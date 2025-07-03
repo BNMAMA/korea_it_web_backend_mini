@@ -1,19 +1,22 @@
 package com.korit.BoardStudy.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRole {
     private Integer userRoleId;
-    private String userId;
-    private String roleId;
+    private Integer userId;
+    private Integer roleId;
     private LocalDateTime createDt;
     private LocalDateTime updateDt;
 
-    private List<UserRole> userRoles;
+    private Role role;
 }

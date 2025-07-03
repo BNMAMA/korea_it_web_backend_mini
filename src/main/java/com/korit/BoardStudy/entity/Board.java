@@ -14,5 +14,4 @@ public class Board {
     private Integer userId;
     private LocalDateTime createDt;
     private LocalDateTime updateDt;
-
 }
