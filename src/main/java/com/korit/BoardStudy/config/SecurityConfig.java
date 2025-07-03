@@ -51,7 +51,7 @@ public class SecurityConfig {
         http.logout(logout -> logout.disable()); //로그아웃 기능 끄기
 
         http.sessionManagement(Session -> Session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        //서버의 기억 저장장치
+        //서버의 기억 저장장치임
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(auth -> {
             //모든 보안 요청
