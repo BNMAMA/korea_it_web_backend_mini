@@ -42,7 +42,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)//어떤걸 보안에 거칠지 설정
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)//어떤걸 보안에 거칠지 설정(보안필터)
             throws Exception { //예외 생길 수 있음
         http.cors(Customizer.withDefaults()); //위에서 설정한 값 디폴트로 설정
         http.csrf(csrf -> csrf.disable()); //보안 장치 끄기(인용방지)
