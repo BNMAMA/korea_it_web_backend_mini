@@ -1,6 +1,8 @@
 package com.korit.BoardStudy.config;
 
 import com.korit.BoardStudy.security.filter.JwtAuthenticationFilter;
+import com.korit.BoardStudy.security.handler.OAuth2SuccessHandler;
+import com.korit.BoardStudy.service.OAuth2PrincipalUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    @Autowired
+    private OAuth2PrincipalUserService oAuth2PrincipalUserService;
+
+    @Autowired
+    private OAuth2SuccessHandler oAuth2SuccessHandler;
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -55,11 +63,19 @@ public class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(auth -> {
             //모든 보안 요청
-            auth.requestMatchers("/auth/**").permitAll();
+            auth.requestMatchers("/auth/**", "/oauth2/**", "/login/oauth2/**").permitAll();
             //전부 허가
             auth.anyRequest().authenticated();
             //모든 요청은 로그인 인증
         });
+
+        http.oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo.userService(oAuth2PrincipalUserService))
+                        //사용자 정보를 구글이나 네이버 등으로 가지고 감 ->             userService에서
+                        .successHandler(oAuth2SuccessHandler) //성공 후 토큰 발급, 리다이렉트, 응답
+                );
+
+
         return http.build();
     }
 }

@@ -24,6 +24,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody SigninReqDto signinReqDto) {
+            //HTTP응답을 세밀하게 도와주는 클래스
         return ResponseEntity.ok(authService.signin(signinReqDto));
     }
 }
