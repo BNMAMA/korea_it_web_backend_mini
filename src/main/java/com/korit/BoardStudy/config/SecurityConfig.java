@@ -63,7 +63,7 @@ public class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(auth -> {
             //모든 보안 요청
-            auth.requestMatchers("/auth/**", "/oauth2/**", "/login/oauth2/**").permitAll();
+            auth.requestMatchers("/auth/**", "/oauth2/**", "/login/oauth2/**","/mail/verify").permitAll();
             //전부 허가
             auth.anyRequest().authenticated();
             //모든 요청은 로그인 인증
