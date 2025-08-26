@@ -40,7 +40,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler  { //�
         Optional<OAuth2User> optionalOAuth2User = oAuth2UserRepository.getOAuth2UserByProviderAndProviderUserId(provider, providerUserId);
 
         if (optionalOAuth2User.isEmpty()) { //로그인한 사람이 계정이 없거나 연동이 안됨
-            response.sendRedirect("http://localhost:3000/auth/oauth2?provider=" + provider + "&providerUserId=" + providerUserId + "&email=" + email);
+            response.sendRedirect("http://localhost:5173/auth/oauth2?provider=" + provider + "&providerUserId=" + providerUserId + "&email=" + email);
             return; //Redirect 이후 중복 이후 실행이 발생하지 않게 하기 위해
         }
 
@@ -55,6 +55,6 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler  { //�
                                                     //Optional객체에서 -> User객체 -> User객체에서 userId -> 문자열
         }
 
-        response.sendRedirect("http://localhost:3000/auth/oauth2/signin?accessToken=" + accessToken);
+        response.sendRedirect("http://localhost:5173/auth/oauth2/signin?accessToken=" + accessToken);
     }
 }
