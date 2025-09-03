@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.korit.BoardStudy.mapper.UserRoleMapper">
-
     <resultMap id="RoleResultMap" type="com.korit.BoardStudy.entity.Role">
         <id property="roleId" column="role_id"/>
         <result property="roleName" column="role_name" />
@@ -21,42 +20,39 @@
 
     <insert id="addUserRole" useGeneratedKeys="true" keyProperty="userRoleId">
         insert into
-            user_role_tb
+        user_role_tb
         values
-            (0, #{userId}, #{roleId}, now(), null)
+        (0, #{userId}, #{roleId}, now(), null)
     </insert>
-    
+
     <select id="getUserRoleByUserIdAndRoleId" resultMap="UserRoleResultMap">
         select
-            urt.user_role_id,
-            urt.user_id,
-            urt.role_id AS urt_role_id,
-            urt.create_dt,
-            urt.update_dt,
+        urt.user_role_id,
+        urt.user_id,
+        urt.role_id AS urt_role_id,
+        urt.create_dt,
+        urt.update_dt,
 
-            rt.role_id,
-            rt.role_name,
-            rt.roel_name_kor
+        rt.role_id,
+        rt.role_name,
+        rt.role_name_kor
         from
-            user_role_tb urt
-            left join role_tb rt on (urt.role_id = rt.role_id)
+        user_role_tb urt
+        left join role_tb rt on (urt.role_id = rt.role_id)
         where
-            urt.user_id = #{userId} and
-            urt.role_id = #{roleId}
+        urt.user_id = #{userId} and
+        urt.role_id = #{roleId}
     </select>
-    
+
     <update id="updateRoleId">
         update
-            user_role_tb
+        user_role_tb
         set
-            role_id = 2,
-            update_dt = now()
+        role_id = 2,
+        update_dt = now()
         where
-            user_role_id = #{userRoleId} and
-            user_id = #{userId}
+        user_role_id = #{userRoleId} and
+        user_id = #{userId}
     </update>
-
-
-
 
 </mapper>

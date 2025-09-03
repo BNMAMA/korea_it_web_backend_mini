@@ -6,20 +6,19 @@
 
     <select id="getOAuth2UserByProviderAndProviderUserId">
         select
-            *
+        *
         from
-            oauth2_user_tb
+        oauth2_user_tb
         where
-            provider = #{provider} and
-            provider_user_id = #{providerUserId}
-
+        provider = #{provider} and
+        provider_user_id = #{providerUserId}
     </select>
 
     <insert id="addOAuth2User">
         insert into
-            oauth2_user_tb
+        oauth2_user_tb
         values
-            (0, #{userId},  #{provider}, #{providerUserId}, now(), null)
+        (0, #{userId}, #{provider}, #{providerUserId}, now(), null)
     </insert>
 
 </mapper>

@@ -30,9 +30,12 @@
 
     <select id="getBoardList" resultMap="BoardResultMap">
         select
-        *
+            *
         from
-        board_tb
+            board_tb
+        order by
+            create_dt DESC
+
     </select>
 
     <delete id="removeBoardByBoardId">
@@ -44,13 +47,13 @@
 
     <update id="updateBoardByBoardId">
         update
-            board_tb
+        board_tb
         set
-            title = #{title},
-            content = #{content},
-            update_dt = now()
+        title = #{title},
+        content = #{content},
+        update_dt = now()
         where
-            board_id = #{boardId}
+        board_id = #{boardId}
     </update>
 
 </mapper>

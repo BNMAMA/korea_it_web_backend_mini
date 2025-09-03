@@ -21,7 +21,7 @@ public class UserRoleRepository {
         return userRoleMapper.getUserRoleByUserIdAndRoleId(userId, roleId);
     }
 
-    public int UpdateRoleId(Integer userRoleId, Integer userId) {
+    public int updateRoleId(Integer userRoleId, Integer userId) {
         return userRoleMapper.updateRoleId(userRoleId, userId);
     }
 }

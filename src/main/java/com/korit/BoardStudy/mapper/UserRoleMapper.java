@@ -8,8 +8,6 @@ import java.util.Optional;
 @Mapper
 public interface UserRoleMapper {
     int addUserRole(UserRole userRole);
-
     Optional<UserRole> getUserRoleByUserIdAndRoleId(Integer userId, Integer roleId);
-
     int updateRoleId(Integer userRoleId, Integer userId);
 }

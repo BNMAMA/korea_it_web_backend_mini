@@ -37,6 +37,7 @@ public class JwtAuthenticationFilter implements Filter {
         }
 
         String authorization = request.getHeader("Authorization");
+        System.out.println(authorization);
         if (jwtUtils.isBearer(authorization)) {
             String accessToken = jwtUtils.removeBearer(authorization);
 
@@ -51,6 +52,7 @@ public class JwtAuthenticationFilter implements Filter {
                             .username(user.getUsername())
                             .password(user.getPassword())
                             .email(user.getEmail())
+                            .profileImg(user.getProfileImg())
                             .userRoles(user.getUserRoles())
                             .build();
 

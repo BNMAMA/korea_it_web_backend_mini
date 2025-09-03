@@ -1,7 +1,8 @@
 package com.korit.BoardStudy.service;
 
 import com.korit.BoardStudy.dto.ApiRespDto;
-import com.korit.BoardStudy.dto.OAuth2.OAuth2MergeReqDto;
+import com.korit.BoardStudy.dto.oauth2.OAuth2MergeReqDto;
+import com.korit.BoardStudy.dto.oauth2.OAuth2SignupReqDto;
 import com.korit.BoardStudy.entity.OAuth2User;
 import com.korit.BoardStudy.entity.User;
 import com.korit.BoardStudy.entity.UserRole;
@@ -60,8 +61,9 @@ public class OAuth2AuthService {
             return new ApiRespDto<>("failed", "계정 연동 중 오류가 발생했습니다 :" + e.getMessage(), null);
         }
     }
+
     @Transactional(rollbackFor = Exception.class)
-    public ApiRespDto<?> signup(com.korit.BoardStudy.dto.oauth2.OAuth2SignupReqDto oAuth2SignupReqDto) {
+    public ApiRespDto<?> signup(OAuth2SignupReqDto oAuth2SignupReqDto) {
 
         Optional<User> userByUsername = userRepository.getUserByUsername(oAuth2SignupReqDto.getUsername());
         if (userByUsername.isPresent()) {

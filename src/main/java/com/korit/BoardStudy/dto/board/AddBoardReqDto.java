@@ -1,11 +1,11 @@
 package com.korit.BoardStudy.dto.board;
 
 import com.korit.BoardStudy.entity.Board;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
+@Builder
 public class AddBoardReqDto {
     private String title;
     private String content;

@@ -17,9 +17,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Optional;
 
-@Component //자동으로 빈 등록
-//로그인 성공(인증객체) 후 어떻게? 토큰 발급/ 연동/ 로그인
-public class OAuth2SuccessHandler implements AuthenticationSuccessHandler  { //로그인 후 후처리 할 수 있는 인터페이스
+@Component
+public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     private OAuth2UserRepository oAuth2UserRepository;
@@ -39,20 +38,18 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler  { //�
 
         Optional<OAuth2User> optionalOAuth2User = oAuth2UserRepository.getOAuth2UserByProviderAndProviderUserId(provider, providerUserId);
 
-        if (optionalOAuth2User.isEmpty()) { //로그인한 사람이 계정이 없거나 연동이 안됨
+        if (optionalOAuth2User.isEmpty()) {
             response.sendRedirect("http://localhost:5173/auth/oauth2?provider=" + provider + "&providerUserId=" + providerUserId + "&email=" + email);
-            return; //Redirect 이후 중복 이후 실행이 발생하지 않게 하기 위해
+            return;
         }
 
-        OAuth2User oAuth2User = optionalOAuth2User.get(); //연동이 된 경우
+        OAuth2User oAuth2User = optionalOAuth2User.get();
 
         Optional<User> optionalUser = userRepository.getUserByUserId(oAuth2User.getUserId());
-        //연동이 된 경우라면 accessToken을 발급해줘야 함
 
         String accessToken = null;
         if (optionalUser.isPresent()) {
             accessToken = jwtUtils.generateAccessToken(optionalUser.get().getUserId().toString());
-                                                    //Optional객체에서 -> User객체 -> User객체에서 userId -> 문자열
         }
 
         response.sendRedirect("http://localhost:5173/auth/oauth2/signin?accessToken=" + accessToken);

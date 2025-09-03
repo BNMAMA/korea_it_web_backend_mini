@@ -1,4 +1,4 @@
-package com.korit.BoardStudy.dto.OAuth2;
+package com.korit.BoardStudy.dto.oauth2;
 
 import com.korit.BoardStudy.entity.OAuth2User;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.korit.BoardStudy.controller;
 
-import com.korit.BoardStudy.dto.OAuth2.OAuth2MergeReqDto;
+import com.korit.BoardStudy.dto.oauth2.OAuth2MergeReqDto;
 import com.korit.BoardStudy.dto.oauth2.OAuth2SignupReqDto;
 import com.korit.BoardStudy.service.OAuth2AuthService;
 import org.springframework.beans.factory.annotation.Autowired;

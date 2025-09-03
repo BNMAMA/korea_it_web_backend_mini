@@ -99,7 +99,7 @@ public class BoardService {
         Optional<Board> optionalBoard = boardRepository.getBoardByBoardId(updateBoardReqDto.getBoardId());
 
         if (optionalBoard.isEmpty()) {
-            return new ApiRespDto<>("failed", "존재하지 않는 게시물 입니다.", null);
+            return new ApiRespDto<>("failed", "존재하지 않은 게시물 입니다.", null);
         }
 
         Board board = optionalBoard.get();
